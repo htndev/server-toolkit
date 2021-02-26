@@ -1,0 +1,52 @@
+{
+  "name": "@xbeat/server-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "npm run lint && rimraf dist xbeat-*",
+    "build": "tsc",
+    "prepack": "npm run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "package.json",
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htndev/server-toolkit.git"
+  },
+  "keywords": [],
+  "author": "Alexandr Vanilchuk <he4then.mail@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/htndev/server-toolkit/issues"
+  },
+  "homepage": "https://github.com/htndev/server-toolkit#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.0",
+    "@commitlint/config-conventional": "^12.0.0",
+    "@types/joi": "^17.2.3",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-unicorn": "^28.0.2",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.13",
+    "@nestjs/graphql": "^7.9.10",
+    "joi": "^17.4.0",
+    "typeorm": "^0.2.31"
+  }
+}
