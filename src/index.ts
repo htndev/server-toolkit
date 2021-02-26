@@ -5,3 +5,4 @@ export * from './types';
 export * from './middlewares';
 export * from './db';
 export * from './utils';
+export * from './guards';
