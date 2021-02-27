@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { NodeEnvironment } from '@xbeat/toolkit';
 import * as Joi from 'joi';
-
-import { NodeEnvironment } from '../../constants/environment.constant';
 
 enum LogLevel {
   DEBUG = 'debug',
