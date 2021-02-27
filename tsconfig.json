@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2018",
     "moduleResolution": "node",
+    "module": "CommonJS",
     "strict": true,
     "importHelpers": true,
     "noImplicitAny": true,
