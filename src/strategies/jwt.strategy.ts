@@ -12,7 +12,7 @@ import { buildFieldLabels } from '../utils/build-field-labels.util';
 type BaseUserFields = { username: string; email: string };
 type UserRepository = Repository<BaseUserFields>;
 
-export function JwtStrategy(serviceScope: string, repository: Type<UserRepository>): Type<Strategy> {
+export function JwtStrategyFactory(serviceScope: string, repository: Type<UserRepository>): Type<Strategy> {
   class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly label = 'user';
 
