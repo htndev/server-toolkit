@@ -10,6 +10,7 @@ interface AppConfigProperties {
   API_VERSION: string;
   ENABLE_SWAGGER: boolean;
   APP_HOSTNAME: string;
+  JWT_SECRET: string;
 }
 
 @Injectable()
@@ -21,7 +22,8 @@ export class AppConfig extends BaseConfig<AppConfigProperties> {
       ALLOWED_DOMAINS: Joi.string().default('*'),
       ENABLE_SWAGGER: Joi.boolean().default(true),
       APP_HOSTNAME: Joi.string().required(),
-      API_VERSION: Joi.string().required()
+      API_VERSION: Joi.string().required(),
+      JWT_SECRET: Joi.string().required()
     });
   }
 
@@ -57,5 +59,9 @@ export class AppConfig extends BaseConfig<AppConfigProperties> {
     const port = this.isLocalhost ? `:${this.port}` : '';
 
     return `http${this.isLocalhost ? '' : 's'}://${this.appHostname}${port}`;
+  }
+
+  get jwtSecret(): string {
+    return this.config.JWT_SECRET;
   }
 }

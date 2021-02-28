@@ -33,8 +33,10 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.6.13",
     "@nestjs/swagger": "^4.7.15",
+    "@nestjs/typeorm": "^7.1.5",
     "@xbeat/toolkit": "file:../toolkit/xbeat-toolkit-1.0.0.tgz",
     "joi": "^17.4.0",
+    "passport-jwt": "^4.0.0",
     "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.31"
   },
@@ -42,6 +44,7 @@
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",
     "@types/joi": "^17.2.3",
+    "@types/passport-jwt": "^3.0.5",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
     "eslint": "^7.20.0",

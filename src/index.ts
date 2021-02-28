@@ -6,3 +6,4 @@ export * from './middlewares';
 export * from './db';
 export * from './utils';
 export * from './guards';
+export * from './strategies';
