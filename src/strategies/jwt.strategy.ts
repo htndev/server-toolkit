@@ -1,22 +1,29 @@
-import { Type, UnauthorizedException } from '@nestjs/common';
+import { Inject, Type, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Maybe } from '@xbeat/toolkit';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Repository } from 'typeorm';
 
-import { AppConfig } from '../providers/config/app.config';
 import { JwtPayload } from '../types/jwt-payload.type';
 import { buildFieldLabels } from '../utils/build-field-labels.util';
 
 type BaseUserFields = { username: string; email: string };
+type JwtSecretConfig = { jwtSecret: string };
 type UserRepository = Repository<BaseUserFields>;
 
-export function JwtStrategyFactory(serviceScope: string, repository: Type<UserRepository>): Type<Strategy> {
+export function JwtStrategyFactory(
+  serviceScope: string,
+  repository: Type<UserRepository>,
+  config: Type<JwtSecretConfig>
+): Type<Strategy> {
   class JwtStrategy extends PassportStrategy(Strategy) {
     private readonly label = 'user';
 
-    constructor(@InjectRepository(repository) private readonly userRepository: UserRepository, appConfig: AppConfig) {
+    constructor(
+      @InjectRepository(repository) private readonly userRepository: UserRepository,
+      @Inject(config) private readonly appConfig: JwtSecretConfig
+    ) {
       super({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey: appConfig.jwtSecret
