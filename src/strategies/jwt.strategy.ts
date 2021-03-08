@@ -1,16 +1,14 @@
 import { Inject, Type, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Maybe } from '@xbeat/toolkit';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Repository } from 'typeorm';
 
-import { JwtPayload } from '../types/jwt-payload.type';
+import { JwtPayload, UserJwtPayload } from '../types/jwt-payload.type';
 import { buildFieldLabels } from '../utils/build-field-labels.util';
 
-type BaseUserFields = { username: string; email: string };
 type JwtSecretConfig = { jwtSecret: string };
-type UserRepository = Repository<BaseUserFields>;
+type UserRepository = Repository<UserJwtPayload>;
 
 export function JwtStrategyFactory(
   serviceScope: string,
@@ -30,11 +28,11 @@ export function JwtStrategyFactory(
       });
     }
 
-    async validate({ username, email, scope }: JwtPayload): Promise<Maybe<BaseUserFields>> {
+    async validate({ username, email, scope }: JwtPayload): Promise<UserJwtPayload> {
       if (scope !== serviceScope) {
         throw new UnauthorizedException();
       }
-      const fields = buildFieldLabels(this.label, ['username', 'email']);
+      const fields = buildFieldLabels(this.label, ['id', 'username', 'email']);
       const user = await this.userRepository
         .createQueryBuilder(this.label)
         .select(fields)

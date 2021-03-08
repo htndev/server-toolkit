@@ -12,5 +12,5 @@ export interface JwtPayload extends BaseUserJwtPayload {
 }
 
 export interface UserJwtPayload extends BaseUserJwtPayload {
-  id: string;
+  id: number;
 }
