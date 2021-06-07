@@ -34,7 +34,7 @@
     "@nestjs/platform-express": "^7.6.13",
     "@nestjs/swagger": "^4.7.15",
     "@nestjs/typeorm": "^7.1.5",
-    "@xbeat/toolkit": "file:../toolkit/xbeat-toolkit-1.0.0.tgz",
+    "@xbeat/toolkit": "^1.0.0",
     "graphql": "^15.5.0",
     "joi": "^17.4.0",
     "passport": "^0.4.1",

@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { FindOperator, Raw, Repository } from 'typeorm';
 
 export class BaseRepository<T> extends Repository<T> {
   async isExists(query: Partial<T>): Promise<boolean> {
@@ -9,5 +9,11 @@ export class BaseRepository<T> extends Repository<T> {
     } catch {
       return false;
     }
+  }
+
+  buildWhereIlike(field: string, value: string | number): { [k: string]: FindOperator<T> } {
+    return {
+      [field]: Raw(alias => `${alias} ILIKE '%${value}%'`)
+    };
   }
 }
